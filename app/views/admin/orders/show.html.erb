@@ -1,0 +1,69 @@
+<h1>注文履歴詳細</h1>
+
+<p>購入者<%= @order.customer.last_name %><%= @order.customer.first_name %></p>
+<p>注文日<%= @order.created_at %></p>
+<p>配送先<%= @order.postal_code %><%= @order.address %><%= @order.name %></p>
+<p>支払方法<%= @order.payment_method %></p>
+<p>注文ステータス<%= f.collection_select(:order_id, @order, :id, :status) %></p>
+
+<thead>
+          <p>
+          <th>商品名</th>
+          <th>単価（税込）</th>
+          <th>数量</th>
+          <th>小計</th>
+          <th>製作ステータス</th>
+          </p>
+        </thead>
+<% @oders.each do |order| %>
+    <tbody>
+      <p>
+        <td>
+          <%= order.orders_detail.item.name %>
+        </td>
+        <td>
+          <% @price=order.orders_detail.price %>
+          <% @price*=1.1 %>
+          <% end %>
+          <%= @price %>
+        </td>
+
+        <td>
+          <% @amount=0 %>
+          <% order.orders_details.each do |orders_detail| %>
+          <% @amount+=orders_detail.amount %>
+          <% end %>
+          <%= @amount %>
+        </td>
+
+        <td>
+          <% @price_total=order.orders_detail.price %>
+          <% @price_total*=@amount %>
+          <%= @price_total %>
+        </td>
+
+        <td>
+          <%= order.status %>
+        </td>
+      </p>
+      <% end %>
+
+  <p>
+    商品合計
+    <% @price*=@amount %>
+    <%= @price %>
+  </p>
+  <p>
+    送料
+    <% order.shipping_cost=800 %>
+    <%= order.shipping_cost %>
+  </p>
+  <p>
+    請求金額合計
+    <% @price_totala=0 %>
+    <% @price_totala+=order.shipping_cost %>
+    <% @price_totala+=@price %>
+    <%= @price_totala %>
+  </p>
+
+    </tbody>

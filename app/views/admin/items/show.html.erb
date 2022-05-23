@@ -1,0 +1,57 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-3<div class= offset-md-1">
+      <p>商品詳細</p>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-3">
+      <p><%= image_tag @item.get_image(200,200) %></p>
+    </div>
+
+    <div class="col-md-5">
+      <table class="table table-hover table-inverse">
+        <thead>
+          <tr>
+            <th></th>
+            <th></th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>商品名</td><td><%= @item.name %></td>
+          </tr>
+          <tr>
+            <td>商品説明</td><td><%= @item.introduction %></td>
+          </tr>
+          <tr>
+            <td>税込価格(税抜価格)</td>
+            <td>
+              <% @price=@item.price %>
+              <% @price*=1.1 %>
+              <%= @price.round %>
+              (<%= @item.price %>)
+            </td>
+          </tr>
+          <tr>
+            <td>販売ステータス</td>
+            <td>
+              <% if @item.is_active %>
+              販売中
+              <% else %>
+              販売停止中
+              <% end %>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <%= link_to "編集する" , edit_admin_item_path(@item.id) %>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

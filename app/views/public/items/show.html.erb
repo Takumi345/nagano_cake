@@ -1,0 +1,32 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-3">
+      <p><%= image_tag @item.get_image(200,200) %></p>
+    </div>
+
+    <div class="col-md-5">
+      <h2><%= @item.name %></h2>
+      <td><%= @item.introduction %></td>
+      <br>
+      <br>
+      <br>
+      <td>￥
+        <% @price=@item.price %>
+        <% @price*=1.1 %>
+        <%= @price.round %>
+        (税込)
+      </td>
+      <br>
+      <br>
+
+      <%= form_with model: @cart_item, url: public_cart_items_path , method: :post do |f| %>
+      <td>
+        <%= f.select :amount, *[1..10] %>
+      </td>
+        <%= f.hidden_field :item_id, :value => @item.id %>
+        <%= f.hidden_field :customer_id, :value => current_customer.id %>
+      <td><%= f.submit 'カートに入れる' %></td>
+      <% end %>
+    </div>
+  </div>
+</div>

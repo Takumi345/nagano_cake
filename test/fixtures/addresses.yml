@@ -1,0 +1,13 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  Item: MyString
+  Cart_item: MyString
+  Order: MyString
+  Order_detail: MyString
+
+two:
+  Item: MyString
+  Cart_item: MyString
+  Order: MyString
+  Order_detail: MyString
