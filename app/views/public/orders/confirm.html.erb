@@ -28,7 +28,7 @@
             </td>
 
             <td>
-              amount<%#= @cart_item.amount %>
+              <%= cart_item.amount %>
             </td>
 
             <td>
@@ -64,11 +64,11 @@
     </div>
 
     <div class="col-md-6">
-      <p>支払方法：<%= @order.payment_method %></p>
+      <p>支払方法：<%= @order.payment_method_i18n %></p>
 
-      お届け先：〒<%= current_customer.postal_code %><%= current_customer.address %>
+      お届け先：〒<%= @order.postal_code %><%= @order.address %>
       <p>
-        <%= "　　　　　" %><%= current_customer.full_name %>
+        <%= "　　　　　" %><%= @order.name %>
       </p>
       <br>
 
@@ -80,7 +80,7 @@
         <%= f.hidden_field :shipping_cost, :value => 800 %>
         <%= f.hidden_field :total_payment, :value => @total_payment %>
         <%= f.hidden_field :payment_method, :value => @order.payment_method %>
-        <%#= f.hidden_field :status, :value =>  %>
+        <%= f.hidden_field :status, :value => "awaiting_payment" %>
       <td><%= f.submit '注文を確定する' %></td>
       <% end %>
     </div>

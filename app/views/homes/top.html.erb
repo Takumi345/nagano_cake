@@ -15,7 +15,9 @@
   <div class="row">
   <% @items.last(4).each do |item| %>
     <div class="col-lg-2 col-md-6 mb-4">
+      <%= link_to public_item_path(item.id) do%>
       <p><%= image_tag item.get_image(100,100) %></p>
+      <% end %>
       <p><%= item.name %></p>
       <p><%= item.price %></p>
     </div>
