@@ -1,8 +1,16 @@
 class Admin::OrdersController < ApplicationController
   def show
-    @oders = order.all
+    @order = Order.find(params[:id])
+    @order_details = @order.order_details.all
   end
 
   def update
   end
+
+  private
+
+  def order_params
+    params.require(:order).permit(:customer_id, :created_at, :postal_code, :address, :name, :payment_method, :status,:shipping_cost)
+  end
+
 end

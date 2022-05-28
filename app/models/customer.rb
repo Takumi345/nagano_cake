@@ -9,7 +9,7 @@ class Customer < ApplicationRecord
   has_many :addresses, dependent: :destroy
 
   def full_name
-    first_name + ' ' + last_name
+    last_name + ' ' + first_name
   end
 
 end
